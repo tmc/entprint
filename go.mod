@@ -1,4 +1,4 @@
-module github.com/rotemtam/entprint
+module github.com/tmc/entprint
 
 go 1.18
 

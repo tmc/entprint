@@ -19,7 +19,7 @@ import (
 	"entgo.io/ent/entc/gen"
 	"github.com/alecthomas/kong"
 
-	_ "github.com/rotemtam/entprint/internal/docker"
+	_ "github.com/tmc/entprint/internal/docker"
 
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
