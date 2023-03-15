@@ -214,6 +214,7 @@ func (c *Config) Run(ctx context.Context) (*Container, error) {
 	}
 	args = append(args, "-p", fmt.Sprintf("%s:%s", p, c.Port), c.Image)
 	cmd = exec.CommandContext(ctx, args[0], args[1:]...) //nolint:gosec
+	fmt.Println(args)
 	out := &bytes.Buffer{}
 	cmd.Stdout = io.MultiWriter(c.Out, out)
 	if err := cmd.Run(); err != nil {
@@ -253,10 +254,12 @@ func (c *Container) Wait(ctx context.Context, timeout time.Duration) error {
 		case <-time.After(100 * time.Millisecond):
 			client, err := sqlclient.Open(ctx, u)
 			if err != nil {
+				fmt.Println("open:", err)
 				continue
 			}
 			db := client.DB
 			if err := db.PingContext(ctx); err != nil {
+				fmt.Println("ping:", err)
 				continue
 			}
 			for _, s := range c.cfg.setup {
